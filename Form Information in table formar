@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Information Form</title>
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+th {
+    background-color: #f5f5f5;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>User Information Form</h1>
+        <form id="userForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <br>
+            <label for="rollno">Roll Number:</label>
+            <input type="text" id="rollno" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <table id="userInfoTable" style="display:none";>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                </tr>
+            </thead>
+            <tbody id="userList"></tbody>
+        </table>
+    </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const userForm = document.getElementById("userForm");
+    const nameInput = document.getElementById("name");
+    const rollnoInput = document.getElementById("rollno");
+    const emailInput = document.getElementById("email");
+    const dobInput = document.getElementById("dob");
+    const userList = document.getElementById("userList");
+
+    userForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = nameInput.value;
+        const rollno = rollnoInput.value;
+        const email = emailInput.value;
+        const dob = dobInput.value;
+
+        if (name && rollno && email && dob) {
+            const newRow = userList.insertRow(-1);
+            const nameCell = newRow.insertCell(0);
+            const rollnoCell = newRow.insertCell(1);
+            const emailCell = newRow.insertCell(2);
+            const dobCell = newRow.insertCell(3);
+
+            nameCell.textContent = name;
+            rollnoCell.textContent = rollno;
+            emailCell.textContent = email;
+            dobCell.textContent = dob;
+
+            nameInput.value = "";
+            rollnoInput.value = "";
+            emailInput.value = "";
+            dobInput.value = "";
+        }
+userInfoTable.style.display="block";
+    });
+});
+
+
+</script>
+</body>
+</html>
