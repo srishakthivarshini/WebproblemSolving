@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .choices label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        button {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactive Quiz</h1>
+        <div class="question">
+            <h3>Question 1: What is the capital of France?</h3>
+            <div class="choices">
+                <label><input type="radio" name="q1" value="a"> Paris</label>
+                <label><input type="radio" name="q1" value="b"> London</label>
+                <label><input type="radio" name="q1" value="c"> Berlin</label>
+            </div>
+        </div>
+        <div class="question">
+            <h3>Question 2: Which planet is known as the Red Planet?</h3>
+            <div class="choices">
+                <label><input type="radio" name="q2" value="a"> Earth</label>
+                <label><input type="radio" name="q2" value="b"> Mars</label>
+                <label><input type="radio" name="q2" value="c"> Venus</label>
+            </div>
+        </div>
+        <button onclick="calculateScore()">Submit Answers</button>
+        <div id="result" style="display: none;">
+            <h2>Your Score:</h2>
+            <p id="score"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateScore() {
+            const answers = {
+                q1: "a",
+                q2: "b"
+            };
+            let score = 0;
+
+            for (const question in answers) {
+                const selectedAnswer = document.querySelector(`input[name=${question}]:checked`);
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === answers[question]) {
+                        score++;
+                    }
+                }
+            }
+
+            const resultDiv = document.getElementById("result");
+            const scoreDisplay = document.getElementById("score");
+            scoreDisplay.textContent = `${score} out of ${Object.keys(answers).length}`;
+            resultDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
