@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Task List</h1>
+  <input type="text" id="taskInput" placeholder="Enter a task">
+  <button id="addButton">Add</button>
+  <ol id="taskList"></ul>
+
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const addButton = document.getElementById("addButton");
+    const taskList = document.getElementById("taskList");
+
+    addButton.addEventListener("click", () => {
+      const taskText = taskInput.value;
+      if (taskText !== "") {
+        const taskItem = document.createElement("li");
+        taskItem.textContent = taskText;
+        taskList.appendChild(taskItem);
+        taskInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
